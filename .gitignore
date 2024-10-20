@@ -1,0 +1,9 @@
+# node_modules
+fish-project/node_modules/
+
+# Pythonキャッシュ
+backend/__pycache__/
+
+# ローカル環境ファイル
+backend/.env
+backend/.env.local
