@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template
+
 from langchain.chains import RetrievalQA
 from langchain.chat_models import ChatOpenAI
 from langchain.embeddings import OpenAIEmbeddings
@@ -9,8 +9,6 @@ from dotenv import load_dotenv
 import re
 import os
 
-app = Flask(__name__)
-
 load_dotenv()
 api_key = os.getenv("API_KEY")
 
@@ -18,8 +16,6 @@ api_key = os.getenv("API_KEY")
 os.environ["OPENAI_API_KEY"] = api_key
 
 # PDFから教員情報を取得する関数
-
-
 def load_documents(pdf_paths):
     documents = []
     for pdf_path in pdf_paths:
@@ -64,8 +60,8 @@ def preprocess_documents(documents):
 def main():
     # 読み込むPDFファイルのパスをリストとして定義
     pdf_paths = [
-        "2024professor.pdf",
-        "campus_tour.pdf"
+        "/Users/josawashunsuke/Documents/FISH/backend/2024professor.pdf",
+        "/Users/josawashunsuke/Documents/FISH/backend/campus_tour.pdf"
     ]
 
     # PDFからドキュメントを読み込む
@@ -95,22 +91,3 @@ def main():
 
 # QAチェーンを初期化
 qa_chain = main()
-
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-
-@app.route('/chat', methods=['POST'])
-def chat():
-    user_input = request.json.get('message')
-
-    # LangChainでユーザーのメッセージに応答
-    response = qa_chain.run(user_input)
-
-    return jsonify({"response": response})
-
-
-if __name__ == "__main__":
-    app.run(debug=True)

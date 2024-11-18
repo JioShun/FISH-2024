@@ -6,4 +6,5 @@ backend/__pycache__/
 
 # ローカル環境ファイル
 backend/.env
-backend/.env.local
+
+.DS_Store
