@@ -23,8 +23,7 @@ chatbotとARによる直感的な学内案内システム．chatbotに「〇〇�
 ## 使用技術
 - **フロントエンド**: Vue.js
 - **バックエンド**: Node.js + Express
-- **API**: Immersal API
-- **その他**: Unity
+- **その他**: Unity, Immersal SDK
 
 ---
 
